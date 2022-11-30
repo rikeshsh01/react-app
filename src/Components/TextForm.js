@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 
 export default function TextForm(props) {
-const [texttt, setText] = useState("Enter Text Here");
+const [texttt, setText] = useState("");
 
 const clickTextupper=()=>{
     // console.log("Click on button");
@@ -41,22 +41,26 @@ const [texttt1, prevText] = useState("");
 const previewText = ()=>{
     prevText(document.getElementById("myBox").value)
 }
+let myStyle = {
+    backgroundColor:props.mode ==="dark"?"darkgray":"white",
+    color:props.mode === "light"?"black":"white"
+}
   return (
  <div className='textFormClass'>
         <div className='my-3'>
             <h3><label htmlFor="myBox" className="form-label">{props.heading}</label></h3>
-            <textarea value={texttt} onChange={chnageText} type="textarea" className="form-control" id="myBox" rows="8"/>
+            <textarea value={texttt} placeholder="Enter some text here" style={myStyle} onChange={chnageText} type="textarea" className="form-control" id="myBox" rows="8"/>
         </div>
-        <button className="btn btn-primary mx-2" onClick={clickTextupper}>Change the text to Uppercase</button>
-        <button className="btn btn-primary " onClick={clickTextlower}>Change the text to lowercase</button>
-        <button className="btn btn-primary mx-2" onClick={clearText}>Clear Text</button>
-        <button className="btn btn-primary" onClick={copyText}>Copy Text</button>
-        <button className="btn btn-primary mx-2" onClick={previewText}>Preview Text</button>
-        <button className="btn btn-primary" onClick={removeExtraSpaces}>Remove Extra Spaces</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary mx-2"  onClick={clickTextupper}>Change the text to Uppercase</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary " onClick={clickTextlower}>Change the text to lowercase</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary mx-2" onClick={clearText}>Clear Text</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary" onClick={copyText}>Copy Text</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary mx-2" onClick={previewText}>Preview Text</button>
+        <button disabled ={texttt.length === 0} className="btn btn-primary" onClick={removeExtraSpaces}>Remove Extra Spaces</button>
 
         <div className="container my-3">
             <h3>Text Summary</h3>
-            <p>{texttt.length} Charecters and {texttt.split(" ").filter((element)=>{return element.length!==0}).length} Words</p>
+            <p>{texttt.length} Charecters and {texttt.split(/\s+/).filter((element)=>{return element.length!==0}).length} Words</p>
             <h3>Preview</h3>
             <p>{texttt1}</p>
         </div>

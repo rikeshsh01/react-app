@@ -3,14 +3,21 @@ import React from 'react'
 export default function About(props) {
     let myStyle = {
         color : props.mode ==="light"?"black":"white",
-        backgroundColor : props.mode ==="light"?"white":"#35517a",
+        backgroundColor : props.mode ==="light"?"white":"#444646",
         border: "2x solid",
         borderColor: "white"
     }
+    let heading ={
+        color : props.mode ==="light"?"black":"white",
+        backgroundColor : props.mode ==="light"?"white":"#444646",
+        borderColor: 'white',
+        width: '6rem',
+        height: '3rem',
+    }
   return (
 
-    <div className='aboutClass' style={myStyle}>
-        <h2 >About</h2>
+    <div className='aboutClass' >
+        <h2 style={heading} className="rounded">About</h2>
         <div className="accordion" id="accordionExample">
             <div className="accordion-item" >
                 <h2 className="accordion-header"  id="headingOne">

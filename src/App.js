@@ -14,35 +14,52 @@ import {
 
 function App() {
   const [mode,setMode] = useState("light");
+  const [icon,setIcon] = useState("moon");
   const [alert,setAlert] = useState(null);
-  const togleMOde = ()=> {
-    // console.log(document.body.style.backgroundColor)
-    if (mode === "light") {
-      setMode("dark");
-      document.body.style.backgroundColor = "grey";
-      document.body.style.color = "white";
-      if (document.location.pathname === "/") {
-        console.log("Test")
-        document.querySelector("[type='textarea']").style.backgroundColor = "darkgray";
-        document.querySelector("[type='textarea']").style.color = "white";
+  const removeBodyClasses = ()=>{
+    document.body.classList.remove("bg-success");
+    document.body.classList.remove("bg-primary");
+    document.body.classList.remove("bg-warning");
+    document.body.classList.remove("bg-danger");
+  }
+  
+  const togleMOdef = (colorParam)=> {
+    // console.log(colorParam);
+    removeBodyClasses();
+    if(colorParam === 'hello'){
+      setIcon("sun");
+      if (mode === "light") {
+        setMode("dark");
+        document.body.style.backgroundColor = "grey";
+        document.body.style.color = "white";
+        // if (document.location.pathname === "/") {
+        //   console.log("Test")
+        //   document.querySelector("[type='textarea']").style.backgroundColor = "darkgray";
+        //   document.querySelector("[type='textarea']").style.color = "white";
+        // }
+        
+  
+        alertMessage("Dark Mode Enabled","success");
       }
-
-      alertMessage("Dark Mode Enabled","success");
+      else
+      {
+        setMode("light");
+        
+        document.body.style.backgroundColor = "white";
+        document.body.style.color = "black";
+        // if (document.location.pathname === "/") {
+        //   console.log("Test");
+        //   document.querySelector("[type='textarea']").style.backgroundColor = "white";
+        //   document.querySelector("[type='textarea']").style.color = "black";
+        // }
+  
+        alertMessage("Light mode enabled","success");
+  
+      }
     }
-    else
-    {
-      setMode("light");
-      
-      document.body.style.backgroundColor = "white";
-      document.body.style.color = "black";
-      if (document.location.pathname === "/") {
-        console.log("Test");
-        document.querySelector("[type='textarea']").style.backgroundColor = "white";
-        document.querySelector("[type='textarea']").style.color = "black";
-      }
-
-      alertMessage("Light mode enabled","success");
-
+    else{
+      document.body.classList.add('bg-'+colorParam);
+      alertMessage(colorParam+" Mode Enabled","success");
     }
   }
 
@@ -62,14 +79,14 @@ function App() {
     <div className="container my-1">
     <Router>
     <div className="navBarClass my-3">
-    <Navbar title="Rikesh Test Store" about="About Us" home="Home" mode={mode} togleMOde={togleMOde}/>
+    <Navbar title="Rikesh Test Store" icon={icon} about="About Us" home="Home" mode={mode} togleMOde={togleMOdef}/>
     </div>
     <div className="alertClass my-2">
     <Alert alert = {alert}/>
     </div>
     <Routes className="componentClass">
-      <Route exact path="/about" element={<About mode={mode}/>}/>
-      <Route exact path="/" element={<TextForm alertMessage={alertMessage} mode={mode} heading="Please enter text here for analysis"/>}/>
+      <Route exact path="/about" activeClassName="active" element={<About mode={mode}/>}/>
+      <Route exact path="/" activeClassName="active" element={<TextForm alertMessage={alertMessage} mode={mode} heading="Please enter text here for analysis"/>}/>
     </Routes> 
     {/* exact keyword needs to be use because react uses partial matching unless */}
     </Router>
