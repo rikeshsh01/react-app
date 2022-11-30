@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, NavLink } from 'react-router-dom'
-import { faCloudMoon } from '@fortawesome/free-solid-svg-icons'
+import { faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
@@ -25,19 +25,20 @@ export default function Navbar(propss) {
           </ul>
 
 
-          <div className="d-flex mx-2">
+          <div className="d-flex me-auto mb-2 mb-lg-0">
             <div className="bg-primary rounded mx-1" onClick={()=>{propss.togleMOde("primary")}} style={{height:"25px",width:"25px",cursor:"pointer"}}></div>
             <div className="bg-success rounded mx-1" onClick={()=>{propss.togleMOde("success")}} style={{height:"25px",width:"25px",cursor:"pointer"}}></div>
             <div className="bg-danger rounded mx-1" onClick={()=>{propss.togleMOde("danger")}} style={{height:"25px",width:"25px",cursor:"pointer"}}></div>
             <div className="bg-warning rounded mx-1" onClick={()=>{propss.togleMOde("warning")}} style={{height:"25px",width:"25px",cursor:"pointer"}}></div>
+            <div className="d-flex">
+            <FontAwesomeIcon icon={faCircleHalfStroke}  onClick={()=>{propss.togleMOde("hello")}} className="mx-2" style={{height:"25px",width:"25px",cursor:"pointer"}}/>
+            </div>
           </div>
           <form className="d-flex" role="search">
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
             <button className="btn btn-outline-success" type="submit">Search</button>
           </form>
-          <div className="d-flex">
-          <FontAwesomeIcon icon={faCloudMoon}  onClick={()=>{propss.togleMOde("hello")}} className="mx-2" style={{height:"35px",width:"35px",cursor:"pointer"}}/>
-          </div>
+        
           
 
           {/* <div className={`form-check form-switch mx-3 text-${propss.mode==="light"?"dark":"light"}`}>

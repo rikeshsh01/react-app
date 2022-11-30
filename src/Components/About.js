@@ -9,10 +9,11 @@ export default function About(props) {
     }
     let heading ={
         color : props.mode ==="light"?"black":"white",
-        backgroundColor : props.mode ==="light"?"white":"#444646",
+        // backgroundColor : props.mode ==="light"?"white":"#444646",
         borderColor: 'white',
-        width: '6rem',
-        height: '3rem',
+        textAlign:"center",
+        // width: '6rem',
+        // height: '3rem',
     }
   return (
 
