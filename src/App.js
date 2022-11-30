@@ -14,26 +14,38 @@ import {
 
 function App() {
   const [mode,setMode] = useState("light");
+  const [alert,setAlert] = useState(null);
   const togleMOde = ()=> {
     // console.log(document.body.style.backgroundColor)
     if (mode === "light") {
       setMode("dark");
       document.body.style.backgroundColor = "grey";
-      document.getElementById("main").style.color = "white";
-      document.querySelector("#main textarea").style.backgroundColor = "darkgray"
-      document.querySelector("#main textarea").style.color = "white"
+      document.body.style.color = "white";
+      if (document.location.pathname === "/") {
+        console.log("Test")
+        document.querySelector("[type='textarea']").style.backgroundColor = "darkgray";
+        document.querySelector("[type='textarea']").style.color = "white";
+      }
+
+      alertMessage("Dark Mode Enabled","success");
     }
     else
     {
       setMode("light");
+      
       document.body.style.backgroundColor = "white";
-      document.getElementById("main").style.color = "black";
-      document.querySelector("#main textarea").style.backgroundColor = "white"
-      document.querySelector("#main textarea").style.color = "black"
+      document.body.style.color = "black";
+      if (document.location.pathname === "/") {
+        console.log("Test");
+        document.querySelector("[type='textarea']").style.backgroundColor = "white";
+        document.querySelector("[type='textarea']").style.color = "black";
+      }
+
+      alertMessage("Light mode enabled","success");
 
     }
   }
-  const [alert,setAlert] = useState(null);
+
   const alertMessage =(message,type)=>{
     setAlert({
       msg:message,
@@ -47,21 +59,21 @@ function App() {
   }
   return (
     <>
+    <div className="container my-1">
     <Router>
-    <div className="container my-3">
+    <div className="navBarClass my-3">
     <Navbar title="Rikesh Test Store" about="About Us" home="Home" mode={mode} togleMOde={togleMOde}/>
     </div>
+    <div className="alertClass my-2">
     <Alert alert = {alert}/>
-    <div className="container">
-    <Routes>
-      <Route exact path="/about" element={<About />}/>
-      <Route exact path="/" element={<TextForm alertMessage={alertMessage} heading="Please enter text here for analysis"/>}/>
+    </div>
+    <Routes className="componentClass">
+      <Route exact path="/about" element={<About mode={mode}/>}/>
+      <Route exact path="/" element={<TextForm alertMessage={alertMessage} mode={mode} heading="Please enter text here for analysis"/>}/>
     </Routes> 
     {/* exact keyword needs to be use because react uses partial matching unless */}
-    </div>
-    <div className="container">
-    </div>
     </Router>
+    </div>
     </>
   );
 }

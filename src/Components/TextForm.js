@@ -42,8 +42,7 @@ const previewText = ()=>{
     prevText(document.getElementById("myBox").value)
 }
   return (
-    <>
-    <div id='main'>
+ <div className='textFormClass'>
         <div className='my-3'>
             <h3><label htmlFor="myBox" className="form-label">{props.heading}</label></h3>
             <textarea value={texttt} onChange={chnageText} type="textarea" className="form-control" id="myBox" rows="8"/>
@@ -54,15 +53,14 @@ const previewText = ()=>{
         <button className="btn btn-primary" onClick={copyText}>Copy Text</button>
         <button className="btn btn-primary mx-2" onClick={previewText}>Preview Text</button>
         <button className="btn btn-primary" onClick={removeExtraSpaces}>Remove Extra Spaces</button>
-    
 
-    <div className="container my-3">
-        <h3>Text Summary</h3>
-        <p>{texttt.length} Charecters and {texttt.split(" ").length} Words</p>
-        <h3>Preview</h3>
-        <p>{texttt1}</p>
-    </div>
-    </div>
-    </>
+        <div className="container my-3">
+            <h3>Text Summary</h3>
+            <p>{texttt.length} Charecters and {texttt.split(" ").filter((element)=>{return element.length!==0}).length} Words</p>
+            <h3>Preview</h3>
+            <p>{texttt1}</p>
+        </div>
+ </div>
+
   )
 }
